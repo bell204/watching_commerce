@@ -16,7 +16,8 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '8'
-
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
 
@@ -25,7 +26,7 @@ jobs:
         with:
           name : cicdsimple
           path: build/libs/*.jar
-        
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
