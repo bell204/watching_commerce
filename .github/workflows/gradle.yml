@@ -20,3 +20,30 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
+        
+      - name: Make Directory deploy
+        run: mkdir -p deploy
+
+      - name: Copy Jar
+        run: cp build/libs/*.jar ./deploy/
+
+      - name: Make zip file
+        run: zip -r ./deploy.zip ./deploy/*
+
+      - name: Linux upload
+        uses: appleboy/scp-action@master
+        
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download artifact  # 빌드했던거 받기
+      uses: actions/download-artifact@v2
+      with:
+        name: cicdsample
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.5.4
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    - name: SCP transfer
+      run: scp *.jar ${{ secrets.SSH_USER }}@${{secrets.SERVER_HOST}}:/home/admin/cicd
