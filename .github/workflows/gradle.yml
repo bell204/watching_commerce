@@ -34,7 +34,7 @@ jobs:
     - name: Download artifact  # 빌드했던거 받기
       uses: actions/download-artifact@v2
       with:
-        name: cicdsample
+        name: cicdsimple
     - name: Setup SSH
       uses: webfactory/ssh-agent@v0.5.4
       with:
