@@ -40,4 +40,4 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
     - name: SCP transfer
-      run: scp *.jar ${{ secrets.SSH_USER }}@${{secrets.SERVER_HOST}}:/home/admin/cicd
+      run: scp build/libs/*.jar ${{ secrets.SSH_USER }}@${{ secrets.SERVER_HOST }}:/home/admin/cicd/watching-${{ github.run_number }}.jar
