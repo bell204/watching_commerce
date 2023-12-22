@@ -33,11 +33,14 @@ jobs:
       - name: Copy Jar
         run: cp build/libs/*.jar ./deploy/
 
+      - name: Move docker-compose.yml
+        run: cp docker-compose.yml ./deploy/
+
       - name: Push to Docker Hub
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
           push: true
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ${{ secrets.DOCKER_REPOSITORY }}
+          image: ${{ secrets.DOCKER_REPOSITORY }}
           tags: latest
