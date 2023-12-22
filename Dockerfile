@@ -14,7 +14,7 @@ ARG JAR_FILE=*.jar
 ADD ${JAR_FILE} app.jar
 
 # 현재 디렉토리의 ./deploy/를 도커 이미지 안의 deploy로 복사.
-ADD ./deploy/* /deploy/
+ADD deploy/* /deploy/
 
 # 설정 파일은 config 디렉토리에 위치함.
 CMD ["java","-jar", "-Dspring.config.location:/config/${PROPERTIES}", "-Dspring.profiles.active=${PROFILE}", "/app.jar"]
