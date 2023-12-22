@@ -1,5 +1,7 @@
-FROM java:8
+FROM openjdk:8-jdk
+
 MAINTAINER bell204 <bell2016@naver.com>
+
 ENV PROPERTIES=application.properties
 
 # 맨처음에는 PROFILE 환경 변수 설정 안 함
