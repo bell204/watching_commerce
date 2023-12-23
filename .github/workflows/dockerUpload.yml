@@ -36,11 +36,13 @@ jobs:
       - name: Move docker-compose.yml
         run: cp docker-compose.yml ./deploy/
 
-      - name: Push to Docker Hub
-        uses: docker/build-push-action@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Build and push
+        uses: docker/build-push-action@v5
         with:
           push: true
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          image: ${{ secrets.DOCKER_REPOSITORY }}
-          tags: latest
+          tags: user/app:latest
