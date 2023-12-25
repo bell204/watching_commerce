@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  dev:
+    image: bell204/watching-backend
+    ports:
+      - 8000:8000
+    volumes:
+      - /tmp:/config
+    environment:
+      PROPERTIES: application-dev.properties
+      PROFILE: dev
