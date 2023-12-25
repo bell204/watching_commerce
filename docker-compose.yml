@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   dev:
-    image: bell204/watching-backend
+    image: bell204/watching_backend
     ports:
       - 8000:8000
     volumes:

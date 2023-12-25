@@ -31,7 +31,7 @@ jobs:
         run: cp scripts/*.sh ./deploy/
 
       - name: Copy Jar
-        run: cp build/libs/*.jar ./deploy/
+        run: cp build/libs/*.jar app.jar
 
       - name: Move docker-compose.yml
         run: cp docker-compose.yml ./deploy/
