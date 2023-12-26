@@ -14,4 +14,4 @@ ARG JAR_FILE=*.jar
 ADD ${JAR_FILE} app.jar
 
 # 설정 파일은 config 디렉토리에 위치함.
-CMD ["java","-jar", "-Dspring.config.location:/config/${PROPERTIES}", "-Dspring.profiles.active=${PROFILE}", "app.jar"]
+CMD ["java","-jar", "-Dspring.config.location:/config/${PROPERTIES}", "-Dspring.profiles.active=${PROFILE}", "deploy/app.jar"]
