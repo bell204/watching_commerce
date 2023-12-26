@@ -1,7 +1,7 @@
 name: vue-builder
 on:
   push:
-    branches: [front-dev]
+    branches: front-dev
 
 jobs:
   build:
@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: Install Dependencies
