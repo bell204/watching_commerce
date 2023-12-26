@@ -14,8 +14,8 @@ then
 else
   if [ ${PID}=8000 ]
   then
-    echo "> port : $PID로 실행중인 real1을 컨테이너 종료합니다."
-    docker-compose kill real1
+    echo "> port : $PID로 실행중인 dev를 컨테이너 종료합니다."
+    docker-compose kill dev
   fi
   sleep 10
 fi
