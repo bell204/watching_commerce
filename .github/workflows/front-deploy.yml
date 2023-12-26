@@ -37,6 +37,17 @@ jobs:
           push: true
           tags: docker.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_FRONT_REPOSITORY }}:latest
 
+      - name: Load balancer scp dist folder
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.NCP_SERVER1_HOST}}
+          username: ${{ secrets.NCP_SERVER1_HOST}}
+          password: ${{ secrets.NCP_SERVER1_HOST}}
+          port: ${{ secrets.NCP_SERVER1_HOST}}
+          source: "./front/dist/*"
+          target: "~/"
+          overwrite: true
+
       - name: front image update
         uses: appleboy/ssh-action@master
         with:
