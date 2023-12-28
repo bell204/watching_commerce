@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPOSITORY=/root/ubuntu/musinsa-watcher/backend/deploy/
+REPOSITORY=/root/deploy/
 
 cd $REPOSITORY/zip
 
