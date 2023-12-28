@@ -89,7 +89,7 @@
               self.currentListTopic = "category"
               window.scrollTo(0, 0);
               axios
-                  .get('http://118.67.143.24:30000/api/v1/product/list', {
+                  .get('http://118.67.143.24/api/v1/product/list', {
                       params: {
                           "category": category,
                           "page" : page
@@ -115,7 +115,7 @@
             alert(3)
               let self = this
               axios
-              .get('http://118.67.143.24:30000/api/v1/search/brands', {
+              .get('http://118.67.143.24/api/v1/search/brands', {
                   params: {
                       "type": typeNumber
                   }
