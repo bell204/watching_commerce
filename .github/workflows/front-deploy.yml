@@ -58,4 +58,4 @@ jobs:
           script: |
             cd ~/deploy/
             sudo docker-compose pull
-            sudo docker-compose restart front
+            sudo docker-compose restart dev

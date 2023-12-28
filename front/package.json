@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "npm run dev",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "lint": "vue-cli-service lint",
     "build": "node build/build.js"
   },

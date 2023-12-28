@@ -1,28 +1,141 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+      <b-navbar style="background-color:black ">
+          <b-navbar-brand >
+              <a href="/" style="color :#FFFFFF; text-decoration:none !important">
+                  <h2 style="color :#FFFFFF;">MUSINSA WATCHER</h2>
+              </a>
+          </b-navbar-brand>
+          <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+          <b-collapse id="nav-collapse" is-nav="is-nav">
+              <b-navbar-nav class="ml-auto">
+                  <b-nav-form>
+                      <b-form-input size="md" class="mr-sm-2" placeholder="Search"></b-form-input>
+                      <b-button
+                          size="sm"
+                          class="my-2 my-sm-0"
+                          type="submit"
+                          style="background-color : #000000">
+                          <b-icon icon="search" font-scale="1.5" color="#FFFFFF"></b-icon>
+                      </b-button >
+                  </b-nav-form>
+              </b-navbar-nav>
+          </b-collapse>
+      </b-navbar>
+      <div id="page-wrapper">
+          <!-- 사이드바 -->
+          <div id="sidebar-wrapper">
+              <b-tabs content-class="mt-3" style="margin-top : 20px;">
+                  <b-tab title="품목" active="active" align="left">
+                      <ul class="sidebar-nav">
+                          <li>
+                              <a href="javascript:void(0)" v-on:click="goToCategory(category.top, 0)">상의<small style="color : #b2b2b2">Top</small>
+                              </a>
+                          </li>                          
+                      </ul>
+                  </b-tab>
+              </b-tabs>
+          </div>
+
+        
+      </div>
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  import axios from 'axios'
+  export default {
+      name: 'App',
+      data() {
+          return {
+              category: {
+                  top: '001',
+                  outer: '002',
+                  pants: '003',
+                  bag: '004',
+                  sneakers: '018',
+                  shoes: '005',
+                  headwear: '007',
+                  skirt: '022',
+                  onepiece: '020',
+                  socks: '008'
+              },
+              numToCategory: {
+                  '001': 'Top',
+                  '002': 'Outer',
+                  '003': 'Pants',
+                  '004': 'Bag',
+                  '018': 'Sneakers',
+                  '005': 'Shoes',
+                  '007': 'Headwear',
+                  '022': 'Skirt',
+                  '020': 'Onepiece',
+                  '008': 'Socks/Legwear'
+              },
+              currentListTopic : "",
+              products: [],
+              currentPage: 1,
+              curCategory: '',
+              curBrand: '',
+              rows: 0,
+              perpage: 25,
+              brands : [],
+          }
+      },
+      methods: {
+          goToCategory(category, page) {
+              let self = this
+              self.currentListTopic = "category"
+              window.scrollTo(0, 0);
+              axios
+                  .get('http://118.67.143.24:30000/api/v1/product/list', {
+                      params: {
+                          "category": category,
+                          "page" : page
+                      }
+                  })
+                  .then((response) => {
+                      self.products = response.data.content
+                      self.currentPage = response.data.pageable.pageNumber + 1
+                      self.rows = response.data.totalElements
+                      self.perpage = response.data.pageable.pageSize
+                      self.curCategory = category
+                      if (this.$route.path !== '/') 
+                          this
+                              .$router
+                              .push({name: 'List'})
+                      })
+                  .catch((error) => {
+                      console.log(error);
+                  });
+          },
+         
+          findBrandList(typeNumber) {
+            alert(3)
+              let self = this
+              axios
+              .get('http://118.67.143.24:30000/api/v1/search/brands', {
+                  params: {
+                      "type": typeNumber
+                  }
+              })
+              .then((response) => {
+                  self.brands = response.data
+              })
+              .catch((error) => {
+                  console.log(error);
+              });
+          }
+      },
+      created() {
+          let self = this
+          self.currentListTopic = "category"
+          self.curCategory = '001'
+          self.goToCategory(self.curCategory, 0) 
+          self.findBrandList(1) 
+      }
   }
-}
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style src="./assets/css/app.css"></style>
