@@ -17,10 +17,12 @@
     "chartkick": "^3.2.1",
     "hchs-vue-charts": "^1.2.8",
     "v-scroll-lock": "^1.3.1",
-    "vue": "^2.6.12",
+    "vue": "^2.7.16",
     "vue-chartjs": "^3.5.1",
     "vue-chartkick": "^0.6.1",
-    "vue-router": "^3.0.1"
+    "vue-cookie": "^1.1.4",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
