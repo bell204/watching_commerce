@@ -31,7 +31,12 @@
                     password: this.userPassword
                 })
                 .then((response) => {
-                  console.log(response)
+                    this.$store.dispatch('setAccessToken', response.data.access).then(() => {
+                    this.$store.dispatch('setUser', response.data.user)
+                    .then(() => {
+                      this.$router.push("/dashboard")
+                    })
+                  })
                 }).catch((error) => {
                   console.error("실패 ", error);
                 })
