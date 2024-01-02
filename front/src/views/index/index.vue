@@ -1,14 +1,13 @@
 <template>
     <div>
        index
+       <router-link to="login">login</router-link>
     </div>
   </template>
   <script>
   
   export default {
     name: "index",
-  
-    components: {},
     filters: {},
     data() {
       return {
@@ -17,7 +16,6 @@
     },
     created() {},
     mounted() {
-      console.log(process.env)
     },
   
     methods: {}

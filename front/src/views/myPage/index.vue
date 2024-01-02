@@ -1,14 +1,14 @@
 <template>
     <div>
-      dashbaord
-      <router-link to="myPage">마이페이지</router-link>
+      <div>마이페이지</div>
+      <router-link to="registerStore">상점 등록</router-link>
     </div>
   </template>
   
   <script>
   
     export default {
-        name: 'dashboard',
+        name: 'myPage',
         data() {
             return {
               
