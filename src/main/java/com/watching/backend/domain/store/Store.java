@@ -25,8 +25,6 @@ public class Store implements Serializable {
 
     private String address;
 
-    private String ownerId;
-
     private String openStatus;
 
     private String introduction;

@@ -6,25 +6,24 @@ import com.watching.backend.domain.store.StoreDTO;
 import com.watching.backend.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 import static com.watching.backend.utils.ResponseEntityConstants.RESPONSE_OK;
 
 @RestController
-@RequestMapping("/stores")
+@CrossOrigin("*")
+@RequestMapping("/api/v1/stores")
 @RequiredArgsConstructor
 public class StoreController {
 
     private final StoreService storeService;
 
-    @PostMapping
+    @PostMapping("/insertStore")
     @LoginCheck(userLevel = LoginCheck.UserLevel.OWNER)
-    public ResponseEntity<Void> insertStore(StoreDTO store, @CurrentUserId String ownerId) {
-
-        StoreDTO newStore = storeService.setOwnerID(store, ownerId);
-        storeService.insertStore(newStore);
+    public ResponseEntity<Void> insertStore(@RequestBody HashMap params) {
+        storeService.insertStore(params);
 
         return RESPONSE_OK;
 
