@@ -22,8 +22,8 @@
         </div>
 
         <div>
-            <label for="categoryId">Category ID:</label>
-            <input type="text" v-model="formData.categoryId" id="categoryId" >
+            <label for="categoryName">Category Name:</label>
+            <input type="text" v-model="formData.categoryName" id="categoryName" >
         </div>
 
         <button type="submit">registerStore</button>
@@ -44,7 +44,7 @@
                     address: '',
                     openStatus: 'O',
                     introduction: '',
-                    categoryId: ''
+                    categoryName: ''
                 }
             }
         },
@@ -53,9 +53,10 @@
                 axios
                     .post( process.env.VUE_APP_REQ_URL +'/api/v1/stores/insertStore', this.formData)
                     .then((response) => {
-                    console.log(response)
+                        console.log(response)
+                        this.$router.push("/dashboard")
                     }).catch((error) => {
-                    console.error("실패 ", error);
+                        console.error("실패 ", error);
                     })
             }
         }
