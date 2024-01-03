@@ -2,10 +2,7 @@ package com.watching.backend.domain.store;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -29,7 +26,7 @@ public class Store implements Serializable {
 
     private String introduction;
 
-    private String categoryId;
+    private long categoryId;
 
     private LocalDateTime createdAt;
 

@@ -2,14 +2,14 @@ package com.watching.backend.domain.category;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 
 @Getter
+@Setter
 @Entity
 @NoArgsConstructor
 public class Category implements Serializable {

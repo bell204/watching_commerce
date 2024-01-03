@@ -1,5 +1,7 @@
 package com.watching.backend.service;
 
+import com.watching.backend.domain.category.Category;
+import com.watching.backend.domain.category.CategoryRepository;
 import com.watching.backend.domain.store.Store;
 import com.watching.backend.domain.store.StoreDTO;
 import com.watching.backend.domain.store.StoreRepository;
@@ -16,7 +18,11 @@ public class StoreService {
 
     private final StoreRepository storeRepository;
 
+    private final CategoryRepository categoryRepository;
+
     public void insertStore(HashMap params) {
+
+        long categoryId = categoryRepository.getNextId();
 
         long nextSeq = storeRepository.getNextId();
         Store store = new Store();
@@ -26,7 +32,12 @@ public class StoreService {
         store.setAddress(params.get("address").toString());
         store.setOpenStatus(params.get("openStatus").toString());
         store.setIntroduction(params.get("introduction").toString());
-        store.setCategoryId(params.get("categoryId").toString()); // 화면단에서 지정해줘야 함.
+        store.setCategoryId(categoryId); // 화면단에서 지정해줘야 함.
         storeRepository.save(store);
+
+        Category category = new Category();
+        category.setId(categoryId);
+        category.setName(params.get("categoryName").toString());
+        categoryRepository.save(category);
     }
 }
